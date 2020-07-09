@@ -1,0 +1,57 @@
+package: qanda
+version: '2.0.0-dev'
+author: 'Alexander Walther für MARKETING NACH PLAN'
+supportpage: https://alexplusde.github.io/qanda/
+load: late
+
+requires:
+    php:
+        version: '^7.2'
+    redaxo: ^5.8
+    packages:
+        yform: ^3.3
+
+page:
+    title: translate:qanda
+    prio: 100
+    icon: rex-icon fa-question-circle
+
+pages:
+    qanda:
+        title: translate:qanda
+        main: true
+        block: system
+        prio: 16
+        icon: rex-icon fa-question-circle
+        perm: qanda[]
+        subpages: 
+            qanda:
+                title: Termine
+                icon: rex-icon fa-calendar-o
+                subPath: pages/data_edit.php
+                yformTable: rex_qanda
+                yformClass: rex_qanda
+                yformTitle: false
+                perm: qanda[qanda]
+            category:
+                title: Kategorien
+                icon: rex-icon fa-folder
+                subPath: pages/data_edit.php
+                yformTable: rex_qanda_category
+                yformClass: rex_qanda_category
+                yformTitle: false
+                perm: qanda[category]
+            settings:
+                title: Settings
+                icon: rex-icon fa-gear
+                itemclass: pull-right
+                perm: admin
+            docs:
+                title: Docs
+                subPath: README.md
+                icon: rex-icon fa-info-circle
+                itemclass: pull-right
+                perm: qanda[docs]
+
+default_config:
+    editor: '{"class":"form-control cke5-editor","data-lang":"de","data-profile":"across_inline"}'
