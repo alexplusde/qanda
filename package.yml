@@ -1,5 +1,5 @@
 package: qanda
-version: '2.0.0-dev'
+version: '2.0.0'
 author: 'Alexander Walther für MARKETING NACH PLAN'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
@@ -52,4 +52,4 @@ pages:
                 perm: qanda[docs]
 
 default_config:
-    editor: '{"class":"form-control cke5-editor","data-lang":"de","data-profile":"across_inline"}'
+    editor: 'class="form-control cke5-editor" data-lang="de" data-profile="default"'
