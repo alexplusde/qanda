@@ -6,10 +6,10 @@ load: late
 
 requires:
     php:
-        version: '^7.2'
-    redaxo: ^5.8
+        version: '^7.3'
+    redaxo: ^5.10
     packages:
-        yform: ^3.3
+        yform: ^3.4
 
 page:
     title: translate:qanda
@@ -26,28 +26,26 @@ pages:
         perm: qanda[]
         subpages: 
             qanda:
-                title: Termine
-                icon: rex-icon fa-calendar-o
+                title: Fragen und Antworten
+                icon: rex-icon fa-question-circle
                 subPath: pages/data_edit.php
-                yformTable: rex_qanda
-                yformClass: rex_qanda
-                yformTitle: false
+                itemattr:
+                    table_name: rex_qanda
                 perm: qanda[qanda]
             category:
                 title: Kategorien
                 icon: rex-icon fa-folder
                 subPath: pages/data_edit.php
-                yformTable: rex_qanda_category
-                yformClass: rex_qanda_category
-                yformTitle: false
+                itemattr:
+                    table_name: rex_qanda_category
                 perm: qanda[category]
             settings:
-                title: Settings
+                title: Einstellungen
                 icon: rex-icon fa-gear
                 itemclass: pull-right
                 perm: admin
             docs:
-                title: Docs
+                title: Hilfe
                 subPath: README.md
                 icon: rex-icon fa-info-circle
                 itemclass: pull-right
