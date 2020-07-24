@@ -5,7 +5,7 @@ class qanda extends \rex_yform_manager_dataset
 {
     public function getCategory()
     {
-        $this->category = $this->getRelatedDataset('qanda_category_id');
+        $this->category = $this->getRelatedDataset('category_ids');
         return $this->category;
     }
 
@@ -21,5 +21,15 @@ class qanda extends \rex_yform_manager_dataset
     public function getAnswer()
     {
         return $this->getValue("answer");
+    }
+    public function getAuthor()
+    {
+        return $this->getValue("author");
+    }
+    public function showJsonLd($question)
+    {
+        $fragment = new rex_fragment;
+        $fragment->setVar("question", $question);
+        return $fragment->parse('qanda.json-ld.php');
     }
 }

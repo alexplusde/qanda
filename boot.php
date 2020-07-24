@@ -17,6 +17,3 @@ if (rex::isBackend() && rex_be_controller::getCurrentPage() == "qanda/qanda") {
         $ep->setSubject(str_replace($suchmuster, $ersetzen, $ep->getSubject()));
     });
 }
-
-// class="form-control cke5-editor" name="FORM[data_edit-rex_qanda][1]" id="yform-data_edit-rex_qanda-field-1" rows="10" data-lang="de" data-profile="across_inline"
-// {"class":"form-control cke5-editor","data-lang":"de","data-profile":"across_inline"}
