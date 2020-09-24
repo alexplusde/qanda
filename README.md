@@ -97,11 +97,11 @@ Die Tabelle Kategorien kann frei verändert werden, um Fragen / Antworten zu gru
 ## Autor
 
 **Alexander Walther**  
-http://www.alexplus.de  
-https://github.com/alexplusde  
+http://www.marketing-nach-plan.de  
+https://github.com/alxndr-w
 
 **Projekt-Lead**  
-[Alexander Walther](https://github.com/alexplusde)
+[Alexander Walther](https://github.com/alxndr-w)
 
 ## Credits
 
