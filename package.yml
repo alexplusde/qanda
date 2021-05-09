@@ -1,6 +1,10 @@
+# Natürlich, du kannst einfach Autor und Addon-Name ändern, 
+# schon ist es dein Add-On. Möchtest du nicht lieber 
+# stattdessen den Entwickler unterstützen?
+# https://alexplusde.github.io/qanda/
 package: qanda
-version: '2.0.0'
-author: 'Alexander Walther für MARKETING NACH PLAN'
+version: '2.0.1'
+author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
 

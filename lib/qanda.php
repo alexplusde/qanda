@@ -8,10 +8,14 @@ class qanda extends \rex_yform_manager_dataset
         $this->category = $this->getRelatedDataset('category_ids');
         return $this->category;
     }
+    public function getCategories()
+    {
+        return $this->getRelatedCollection('category_ids');
+    }
 
     public function getAnswerAsPlaintext() :string
     {
-        return strip_tags($this->getValue("question"));
+        return strip_tags($this->getValue("answer"));
     }
     
     public function getQuestion()
@@ -25,6 +29,10 @@ class qanda extends \rex_yform_manager_dataset
     public function getAuthor()
     {
         return $this->getValue("author");
+    }
+    public function getUrl()
+    {
+        return $this->getValue("url");
     }
     public function showJsonLd($question)
     {
