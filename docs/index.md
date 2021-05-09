@@ -30,7 +30,8 @@ Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließ
 foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
     echo '<div class="answer">'.$question->getAnswer().'</div></details>';
-    // echo qanda::showJsonLd($question);
+    echo qanda::showJsonLd($question);
+    // dump($question->getCategories()); ?>
 }
 ?>
 ```
