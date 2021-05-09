@@ -8,8 +8,7 @@ Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingege
 * Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
 * Flexibel: Module 
 * Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
-* Bereit für **mehrsprachige** Websites: Fragen & Antworten können Sprachen zugeordnet werden.
-* Bereit für mehr: Vorbereitet für das [JSON+LD-Format](https://jsonld.com/question-and-answer//)
+* Suchmaschinenoptimiert: Bereit für das [JSON+LD-Format](https://jsonld.com/question-and-answer/) und Strucured Data auf Basis von schema.org
 * Bereit für viel mehr: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
 
 > **Tipp:** Das Addon arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
@@ -97,10 +96,11 @@ Die Tabelle Kategorien kann frei verändert werden, um Fragen / Antworten zu gru
 ## Autor
 
 **Alexander Walther**  
-https://github.com/alexplusde
+http://www.alexplus.de  
+https://github.com/alexplusde  
 
 **Projekt-Lead**  
-[Alexander Walther](https://github.com/alxndr-w)
+[Alexander Walther](https://github.com/alexplusde)
 
 ## Credits
 
