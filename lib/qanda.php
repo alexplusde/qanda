@@ -15,7 +15,7 @@ class qanda extends \rex_yform_manager_dataset
 
     public function getAnswerAsPlaintext() :string
     {
-        return str_replace('"', '\"', strip_tags($this->getValue("answer")));
+        return strip_tags($this->getValue("answer"));
     }
     
     public function getQuestion()
