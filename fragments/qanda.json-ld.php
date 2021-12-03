@@ -2,23 +2,23 @@
   {
     "@context": "https://schema.org",
     "@type": "Question",
-    "name": "<?= $this->question->getQuestion(); ?>",
-    "text": "<?= $this->question->getQuestion(); ?>",
+    "name": "<?= htmlentities($this->question->getQuestion(), ENT_QUOTES, 'UTF-8'); ?>",
+    "text": "<?= htmlentities($this->question->getQuestion(), ENT_QUOTES, 'UTF-8'); ?>",
     "answerCount": 1,
-    "dateCreated": "<?= $this->question->getValue('createdate') ?>",
+    "dateCreated": "<?= htmlentities($this->question->getValue('createdate'), ENT_QUOTES, 'UTF-8'); ?>",
     "author": {
       "@type": "Person",
-      "name": "<?= $this->question->getAuthor(); ?>"
+      "name": "<?= htmlentities($this->question->getAuthor(), ENT_QUOTES, 'UTF-8'); ?>"
     },
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "<?= $this->question->getAnswerAsPlaintext(); ?>",
+      "text": "<?= htmlentities($this->question->getAnswerAsPlaintext(), ENT_QUOTES, 'UTF-8'); ?>",
       "upvoteCount": 0,
-      "url": "<?= $this->question->getUrl() ?>",
-      "dateCreated": "<?= $this->question->getValue('updatedate') ?>",
+      "url": "<?= htmlentities($this->question->getUrl(), ENT_QUOTES, 'UTF-8'); ?>",
+      "dateCreated": "<?= htmlentities($this->question->getValue('updatedate'), ENT_QUOTES, 'UTF-8'); ?>",
       "author": {
         "@type": "Person",
-        "name": "<?= $this->question->getAuthor(); ?>"
+        "name": "<?= htmlentities($this->question->getAuthor(), ENT_QUOTES, 'UTF-8'); ?>"
       }
     }
   }
