@@ -3,7 +3,7 @@
 # stattdessen den Entwickler unterstützen?
 # https://alexplusde.github.io/qanda/
 package: qanda
-version: '2.0.1'
+version: '2.0.2-dev'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
