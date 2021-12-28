@@ -13,7 +13,7 @@ requires:
         version: '^7.3'
     redaxo: ^5.10
     packages:
-        yform: ^3.4
+        yform: '>=3.4'
 
 page:
     title: translate:qanda
