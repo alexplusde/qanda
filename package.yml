@@ -3,7 +3,7 @@
 # stattdessen den Entwickler unterstützen?
 # https://alexplusde.github.io/qanda/
 package: qanda
-version: '2.0.3'
+version: '2.0.4'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
@@ -13,7 +13,7 @@ requires:
         version: '^7.3'
     redaxo: ^5.10
     packages:
-        yform: '>=3.4'
+        yform: '>=4.0,<5'
 
 page:
     title: translate:qanda

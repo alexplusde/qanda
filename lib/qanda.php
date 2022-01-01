@@ -40,4 +40,10 @@ class qanda extends \rex_yform_manager_dataset
         $fragment->setVar("question", $question);
         return $fragment->parse('qanda.json-ld.php');
     }
+    public function showFAQPage($questions)
+    {
+        $fragment = new rex_fragment;
+        $fragment->setVar("questions", $questions);
+        return $fragment->parse('FAQPage.json-ld.php');
+    }
 }

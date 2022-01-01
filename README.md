@@ -9,7 +9,7 @@ Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingege
 
 * Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
 * Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
-* Flexibel: Module 
+* Flexibel: Filtere Fragen und Antworten nach Kategorien
 * Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
 * Suchmaschinenoptimiert: Bereit für das [JSON+LD-Format](https://jsonld.com/question-and-answer/) und Strucured Data auf Basis von schema.org
 * Bereit für viel mehr: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
@@ -27,12 +27,26 @@ Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließ
 ### Beispiel-Modul
 
 ```php
+
+<h1>FAQ-Seite</h1>
+<?php
+
+echo qanda::showFAQPage(qanda::getAll());
+
+foreach (qanda::getAll() as $question) {
+    echo '<details><summary>'.$question->getQuestion().'</summary>';
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
+}
+?>
+```
+
+```php
 <h3>Die wichtigsten Fragen</h3>
 <?php
 foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
     echo '<div class="answer">'.$question->getAnswer().'</div></details>';
-    // echo qanda::showJsonLd($question);
+    echo qanda::showJsonLd($question);
 }
 ?>
 ```
@@ -64,16 +78,16 @@ dump(qanda_category::get(3)); // Kategorie mit der id=3
 
 In der Termin-Tabelle werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
-| Typ      | Typname             | Name                | Bezeichnung         |
-|----------|---------------------|---------------------|---------------------|
-| value    | text                | question            | Frage               |
-| validate | empty               | question            |                     |
-| value    | textarea            | answer              | Antwort             |
-| value    | be_manager_relation | qanda_category_id   | Kategorie           |
-| value    | datestamp           | createdate          | Erstelldatum        |
-| value    | be_user             | updateuser          | Letzte Änderung von |
-| value    | be_user             | createuser          | Autor               |
-| value    | prio                | prio                | Reihenfolge         |
+| Typ      | Typname             | Name              | Bezeichnung         |
+| -------- | ------------------- | ----------------- | ------------------- |
+| value    | text                | question          | Frage               |
+| validate | empty               | question          |                     |
+| value    | textarea            | answer            | Antwort             |
+| value    | be_manager_relation | qanda_category_id | Kategorie           |
+| value    | datestamp           | createdate        | Erstelldatum        |
+| value    | be_user             | updateuser        | Letzte Änderung von |
+| value    | be_user             | createuser        | Autor               |
+| value    | prio                | prio              | Reihenfolge         |
 
 Die wichtigsten Validierungen wurden bereits eingefügt.
 
@@ -81,12 +95,12 @@ Die wichtigsten Validierungen wurden bereits eingefügt.
 
 Die Tabelle Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
 
-| Typ      | Typname             | Name    | Bezeichnung |
-|----------|---------------------|---------|-------------|
-| value    | text                | name    | Titel       |
-| validate | unique              | name    |             |
-| validate | empty               | name    |             |
-| value    | choice              | status  | Status      |
+| Typ      | Typname | Name   | Bezeichnung |
+| -------- | ------- | ------ | ----------- |
+| value    | text    | name   | Titel       |
+| validate | unique  | name   |             |
+| validate | empty   | name   |             |
+| value    | choice  | status | Status      |
 
 ## Lizenz
 
