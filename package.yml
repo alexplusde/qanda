@@ -11,7 +11,7 @@ load: late
 requires:
     php:
         version: '^7.3'
-    redaxo: ^5.10
+    redaxo: ^5.12
     packages:
         yform: '>=4.0,<5'
 
