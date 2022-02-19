@@ -5,7 +5,7 @@
 rex_yform_manager_table_api::importTablesets(rex_file::get(rex_path::addon($this->name, 'install/rex_qanda.tableset.json')));
 
 rex_yform_manager_table::deleteCache();
-
+/*
 $modules = scandir(rex_path::addon('qanda').'module');
 
 foreach ($modules as $module) {
@@ -25,3 +25,4 @@ foreach ($modules as $module) {
     ->setValue('updatedate', date('Y-m-d H:i:s'))
     ->insertOrUpdate();
 }
+ */
