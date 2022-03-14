@@ -3,14 +3,14 @@
 # stattdessen den Entwickler unterstützen?
 # https://alexplusde.github.io/qanda/
 package: qanda
-version: '2.0.5'
+version: '2.0.6'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
 
 requires:
     php:
-        version: '^7.3'
+        version: '^7.4'
     redaxo: ^5.12
     packages:
         yform: '>=4.0,<5'
