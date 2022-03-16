@@ -10,7 +10,7 @@ load: late
 
 requires:
     php:
-        version: '^7.4'
+        version: '>7.4,9'
     redaxo: ^5.12
     packages:
         yform: '>=4.0,<5'
