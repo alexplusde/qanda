@@ -27,7 +27,6 @@ Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließ
 ### Beispiel-Modul
 
 ```php
-
 <h1>FAQ-Seite</h1>
 <?php
 
