@@ -31,7 +31,7 @@ Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließ
 <h1>FAQ-Seite</h1>
 <?php
 
-echo qanda::showFAQPage(qanda::getAll());
+echo qanda::showFAQPage(qanda::getAll()); // Json+ld
 
 foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
@@ -58,9 +58,23 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda` mit Fragen u
 #### Beispiel-Ausgabe
 
 ```php
-dump(qanda::get(3)); // Frage mit der id=3
-dump(qanda::get(3)->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+$question = qanda::get(3); // Frage mit der id=3
+
+// Frage und Antwort
+dump($question->getQuestion()); // Frage
+dump($question->getAuthor()); // Autor der Frage
+dump($question->getAnswer()); // Antwort als HTML (sofern ein Editor angegeben wurde)
+dump($question->getAnswerAsPlaintext()); // Antwort als Text, statt als HTML
+
+// Kategorie
+dump($question->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+dump($question->getCategories()); // Kategorien zur Frage/Antwort mit der id=3
+
+// Weitere Methoden
+dump($question->getUrl()); // URL zur aktuellen Seite mit Sprungmarke `question-header-{id}`
 ```
+
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
 ### Die Klasse `qanda_category`
 
@@ -70,7 +84,10 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda_category` zu.
 
 ```php
 dump(qanda_category::get(3)); // Kategorie mit der id=3
+dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der Kategorie id=3
 ```
+
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
 ## Nutzung im Backend: Die Terminverwaltung.
 
