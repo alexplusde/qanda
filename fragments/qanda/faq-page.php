@@ -1,15 +1,15 @@
 <?php
-<div class="container">
+<div class="qanda container">
 
   <?php
 foreach (qanda::getAll() as $question) {
     ?>
 
   <details class="card">
-    <summary class="card-body card-title h4">
+    <summary class="qanda-question card-body card-title h4">
       <?= $question->getQuestion() ?>
     </summary>
-    <div class="card-body">
+    <div class="qanda-answer card-body">
       <?= $question->getAnswer() ?>
     </div>
   </details>
