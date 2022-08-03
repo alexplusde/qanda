@@ -88,11 +88,11 @@ dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der
 
 Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-## Nutzung im Backend: Die Terminverwaltung.
+## Nutzung im Backend: Eingabe von Fragen und Antworten.
 
 ### Die Tabelle "FRAGEN"
 
-In der Termin-Tabelle werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
+In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
 | Typ      | Typname             | Name              | Bezeichnung         |
 | -------- | ------------------- | ----------------- | ------------------- |
@@ -109,7 +109,7 @@ Die wichtigsten Validierungen wurden bereits eingefügt.
 
 ### Die Tabelle "KATEGORIEN"
 
-Die Tabelle Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
+Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
 
 | Typ      | Typname | Name   | Bezeichnung |
 | -------- | ------- | ------ | ----------- |
