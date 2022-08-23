@@ -1,4 +1,4 @@
-# FAQ / Fragen und Antworten für REDAXO 5.12 & YForm 4.0
+# FAQ / Fragen und Antworten für REDAXO 5.x & YForm 4.x
 
 Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingegeben und verwaltet werden. Kostenlos für nicht-kommerzielle Projekte (CC BY-NC-SA 4.0). Bitte bei Fragen zur Lizenz und Nutzung qanda@alexplus.de anfragen.
 
@@ -16,7 +16,7 @@ Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingege
 
 > **Tipp:** Das Addon arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
 
-> **Steuere eigene Verbesserungen** dem [GitHub-Repository von qanda](https://github.com/alexplusde/qanda) bei. Oder **unterstütze dieses Addon:** Mit einer [Spende oder Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von qanda](https://github.com/alexplusde/qanda) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
 ## Installation
 
@@ -27,11 +27,10 @@ Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließ
 ### Beispiel-Modul
 
 ```php
-
 <h1>FAQ-Seite</h1>
 <?php
 
-echo qanda::showFAQPage(qanda::getAll());
+echo qanda::showFAQPage(qanda::getAll()); // Json+ld
 
 foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
@@ -58,9 +57,23 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda` mit Fragen u
 #### Beispiel-Ausgabe
 
 ```php
-dump(qanda::get(3)); // Frage mit der id=3
-dump(qanda::get(3)->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+$question = qanda::get(3); // Frage mit der id=3
+
+// Frage und Antwort
+dump($question->getQuestion()); // Frage
+dump($question->getAuthor()); // Autor der Frage
+dump($question->getAnswer()); // Antwort als HTML (sofern ein Editor angegeben wurde)
+dump($question->getAnswerAsPlaintext()); // Antwort als Text, statt als HTML
+
+// Kategorie
+dump($question->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+dump($question->getCategories()); // Kategorien zur Frage/Antwort mit der id=3
+
+// Weitere Methoden
+dump($question->getUrl()); // URL zur aktuellen Seite mit Sprungmarke `question-header-{id}`
 ```
+
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
 ### Die Klasse `qanda_category`
 
@@ -70,13 +83,16 @@ Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda_category` zu.
 
 ```php
 dump(qanda_category::get(3)); // Kategorie mit der id=3
+dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der Kategorie id=3
 ```
 
-## Nutzung im Backend: Die Terminverwaltung.
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
+
+## Nutzung im Backend: Eingabe von Fragen und Antworten.
 
 ### Die Tabelle "FRAGEN"
 
-In der Termin-Tabelle werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
+In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
 | Typ      | Typname             | Name              | Bezeichnung         |
 | -------- | ------------------- | ----------------- | ------------------- |
@@ -93,7 +109,7 @@ Die wichtigsten Validierungen wurden bereits eingefügt.
 
 ### Die Tabelle "KATEGORIEN"
 
-Die Tabelle Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
+Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
 
 | Typ      | Typname | Name   | Bezeichnung |
 | -------- | ------- | ------ | ----------- |

@@ -8,7 +8,7 @@ class qanda_category extends \rex_yform_manager_dataset
 
     public function getAllQuestions()
     {
-        return qanda::query()->whereListContains('category_ids',$this->id)
+        return qanda::query()->where('status', 0, ">")->whereListContains('category_ids',$this->id)
             ->find();
     }
 }
