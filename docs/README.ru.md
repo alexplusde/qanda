@@ -1,136 +1,136 @@
-# FAQ / Вопросы и ответы по REDAXO 5.x & YForm 4.x
+# FAQ / Fragen und Antworten für REDAXO 5.x & YForm 4.x
 
-С помощью этого дополнения можно вводить и управлять областями часто задаваемых вопросов, а также & вопросами. Бесплатно для некоммерческих проектов (CC BY-NC-SA 4.0). Если у вас есть какие-либо вопросы о лицензии и использовании, пожалуйста, свяжитесь с qanda@alexplus.de.
+Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingegeben und verwaltet werden. Kostenlos für nicht-kommerzielle Projekte (CC BY-NC-SA 4.0). Bitte bei Fragen zur Lizenz und Nutzung qanda@alexplus.de anfragen.
 
-![Логотип GitHub](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
+![GitHub Logo](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
 
 
 ## Особенности
 
-* Полностью реализовано с **YForm** : доступны все функции и параметры настройки YForm
-* Простой: вывод через [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) или объектно-ориентированный через [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
-* Гибкость: фильтрация вопросов и ответов по категориям
-* Полезно: Доступ имеют только выбранные **ролей**/редакторы
-* Оптимизирован для поисковых систем: готов к формату [JSON+LD](https://jsonld.com/question-and-answer/) и структурированным данным на основе schema.org
-* Готов к большему: совместим с [надстройкой URL2](https://github.com/tbaddade/redaxo_url)
+* Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
+* Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
+* Flexibel: Filtere Fragen und Antworten nach Kategorien
+* Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
+* Suchmaschinenoptimiert: Bereit für das [JSON+LD-Format](https://jsonld.com/question-and-answer/) und Strucured Data auf Basis von schema.org
+* Bereit für viel mehr: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
 
-> **Совет:** Аддон отлично работает вместе с аддонами [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
+> **Tipp:** Das Addon arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
 
-> **Внесите свои собственные улучшения** в репозиторий [qanda](https://github.com/alexplusde/qanda) GitHub. Или **поддержите этот аддон:** Заказом [вы поддержите дальнейшее развитие этого аддона](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von qanda](https://github.com/alexplusde/qanda) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
-## монтаж
+## Установка
 
-Скачайте и установите аддон `qanda` в установщике REDAXO. Затем появится новый пункт меню `Вопросы & Ответы`.
+Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Fragen & Antworten`.
 
-## Использование во внешнем интерфейсе
+## Nutzung im Frontend
 
-### пример модуля
+### Beispiel-Modul
 
 ```php
-<h1>Страница часто задаваемых вопросов</h1>
+<h1>FAQ-Seite</h1>
 <?php
 
 echo qanda::showFAQPage(qanda::getAll()); // Json+ld
 
 foreach (qanda::getAll() as $question) {
-    echo '<details><summary>'.$question->получитьВопрос().'</summary>';
-    эхо '<div class="answer">'.$question->getAnswer().'</div></details>';
+    echo '<details><summary>'.$question->getQuestion().'</summary>';
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
 }
 ?>
 ```
 
 ```php
-<h3>Самые важные вопросы</h3>
+<h3>Die wichtigsten Fragen</h3>
 <?php
 foreach (qanda::getAll() as $question) {
-    echo '<details><summary>'.$question->получитьВопрос().'</summary>';
-    эхо '<div class="answer">'.$question->getAnswer().'</div></details>';
+    echo '<details><summary>'.$question->getQuestion().'</summary>';
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
     echo qanda::showJsonLd($question);
 }
 ?>
 ```
 
-### Класс `канда`
+### Die Klasse `qanda`
 
-Введите `rex_yform_manager_dataset`. Доступ к таблице `rex_qanda` с вопросами и ответами.
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda` mit Fragen und Antworten zu.
 
-#### образец вывода
-
-```php
-$question = qanda::get(3); // вопрос с id=3
-
-// вопрос и ответ
-dump($question->getQuestion()); // Вопрос
-дамп($question->getAuthor()); // автор вопроса
-dump($question->getAnswer()); // Ответ в формате HTML (если был задан редактор)
-dump($question->getAnswerAsPlaintext()); // Ответ в виде текста вместо HTML
-
-// Дамп категории
-($question->getCategory()); // Категория для вопроса/ответа с id=3
-dump($question->getCategories()); // Категории для вопроса/ответа с id=3
-
-// Другие методы
-dump($question->getUrl()); // URL текущей страницы с меткой `question-header-{id}
-```
-
-Дополнительные методы на https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
-
-### Класс `qanda_category`
-
-Введите `rex_yform_manager_dataset`. Доступ к таблице `rex_qanda_category`.
-
-#### Пример вывода категории
+#### Beispiel-Ausgabe
 
 ```php
-дамп(qanda_category::get(3)); // категория с id=3
-dump(qanda_category::get(3)->getAllQuestions()); // Все пары вопрос-ответ категории id=3
+$question = qanda::get(3); // Frage mit der id=3
+
+// Frage und Antwort
+dump($question->getQuestion()); // Frage
+dump($question->getAuthor()); // Autor der Frage
+dump($question->getAnswer()); // Antwort als HTML (sofern ein Editor angegeben wurde)
+dump($question->getAnswerAsPlaintext()); // Antwort als Text, statt als HTML
+
+// Kategorie
+dump($question->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+dump($question->getCategories()); // Kategorien zur Frage/Antwort mit der id=3
+
+// Weitere Methoden
+dump($question->getUrl()); // URL zur aktuellen Seite mit Sprungmarke `question-header-{id}`
 ```
 
-Дополнительные методы на https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-## Использование в бэкенде: ввод вопросов и ответов.
+### Die Klasse `qanda_category`
 
-### Таблица ВОПРОСОВ
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda_category` zu.
 
-Отдельные комбинации вопросов и ответов записываются в таблицу `rex_qanda`. После установки `qanda` доступны следующие поля:
+#### Beispiel-Ausgabe einer Kategorie
 
-| Тип          | имя типа              | Фамилия                 | обозначение         |
-| ------------ | --------------------- | ----------------------- | ------------------- |
-| ценность     | текст                 | вопрос                  | вопрос              |
-| подтверждать | пустой                | вопрос                  |                     |
-| ценность     | текстовая область     | отвечать                | отвечать            |
-| ценность     | be_manager_relation | qanda_category_id     | категория           |
-| ценность     | штамп с датой         | Дата создания           | Дата создания       |
-| ценность     | be_user               | пользователь обновления | Последнее изменение |
-| ценность     | be_user               | Создать пользователя    | автор               |
-| ценность     | приоритет             | приоритет               | Серии               |
+```php
+dump(qanda_category::get(3)); // Kategorie mit der id=3
+dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der Kategorie id=3
+```
 
-Самые важные валидации уже вставлены.
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-### Таблица КАТЕГОРИИ
+## Nutzung im Backend: Eingabe von Fragen und Antworten.
 
-Таблицу категорий можно свободно модифицировать для группировки вопросов/ответов или ключевых слов (в виде тегов).
+### Die Tabelle "FRAGEN"
 
-| Тип          | имя типа   | Фамилия | обозначение |
-| ------------ | ---------- | ------- | ----------- |
-| ценность     | текст      | Фамилия | заглавие    |
-| подтверждать | уникальный | Фамилия |             |
-| подтверждать | пустой     | Фамилия |             |
-| ценность     | выбор      | статус  | статус      |
+In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
-## лицензия
+| Тип      | Typname               | Имя                 | Bezeichnung         |
+| -------- | --------------------- | ------------------- | ------------------- |
+| value    | text                  | question            | Frage               |
+| validate | empty                 | question            |                     |
+| value    | textarea              | answer              | Antwort             |
+| value    | be_manager_relation | qanda_category_id | Категория           |
+| value    | datestamp             | createdate          | Erstelldatum        |
+| value    | be_user               | updateuser          | Letzte Änderung von |
+| value    | be_user               | createuser          | Автор               |
+| value    | prio                  | prio                | Reihenfolge         |
 
-лицензия Массачусетского технологического института
+Die wichtigsten Validierungen wurden bereits eingefügt.
 
-## автор
+### Die Tabelle "KATEGORIEN"
 
-**Александр Вальтер**  
+Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
+
+| Тип      | Typname | Имя    | Bezeichnung |
+| -------- | ------- | ------ | ----------- |
+| value    | text    | name   | Название    |
+| validate | unique  | name   |             |
+| validate | empty   | name   |             |
+| value    | choice  | status | Статус      |
+
+## Лицензия
+
+MIT-Lizenz
+
+## Автор
+
+**Alexander Walther**  
 http://www.alexplus.de  
 https://github.com/alexplusde
 
-**Руководитель проекта**  
-[Александр Вальтер](https://github.com/alexplusde)
+**Projekt-Lead**  
+[Alexander Walther](https://github.com/alexplusde)
 
-## кредиты
+## Кредиты
 
-канда основана на: [YForm](https://github.com/yakamara/redaxo_yform)  
+qanda basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
