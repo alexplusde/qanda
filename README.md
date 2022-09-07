@@ -1,9 +1,6 @@
 # FAQ / Fragen und Antworten für REDAXO 5.x & YForm 4.x
 
-Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingegeben und verwaltet werden. Kostenlos für nicht-kommerzielle Projekte (CC BY-NC-SA 4.0). Bitte bei Fragen zur Lizenz und Nutzung qanda@alexplus.de anfragen.
-
 ![GitHub Logo](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
-
 
 ## Features
 
