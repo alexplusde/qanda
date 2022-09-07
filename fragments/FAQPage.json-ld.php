@@ -2,11 +2,14 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{
+    "mainEntity": [
       <?php
+      $delimiter = "";
       foreach ($this->getVar('questions') as $question) {
+        echo $delimiter; 
+        $delimiter = ";";
           ?>
-
+{
       "@type": "Question",
       "name": <?= json_encode($question->getQuestion(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK); ?> ,
       "text": <?= json_encode($question->getValue('answer'), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK); ?> ,
@@ -27,7 +30,7 @@
           "name": <?= json_encode($question->getAuthor(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK); ?>
         }
       }
-    }, {
+    }
       <?php
       }
       ?>
