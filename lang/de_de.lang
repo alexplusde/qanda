@@ -20,6 +20,6 @@ qanda_prio = Reihenfolge
 qanda_category_name = Kategorie
 
 qanda_status_online = veröffentlicht
-qanda_status_online = offline
+qanda_status_offline = offline
 
 qanda_author_notice = Nenne des Autor von Frage und Antwort, um das korrespondierende JSON+LD-Feld zu füllen.

@@ -20,6 +20,6 @@ qanda_prio = Order
 qanda_category_name = Category
 
 qanda_status_online = Published
-qanda_status_online = Offline
+qanda_status_offline = Offline
 
 qanda_author_notice = Name the author from question and answer to fill out the corresponding JSON+LD field.
