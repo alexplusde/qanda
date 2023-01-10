@@ -6,8 +6,8 @@
       <?php
       $delimiter = "";
       foreach ($this->getVar('questions') as $question) {
-        echo $delimiter; 
-        $delimiter = ";";
+        echo $delimiter;
+        $delimiter = ",";
           ?>
 {
       "@type": "Question",
@@ -34,6 +34,6 @@
       <?php
       }
       ?>
-    }]
+    ]
   }
 </script>

@@ -5,8 +5,7 @@ class qanda extends \rex_yform_manager_dataset
 {
     public function getCategory()
     {
-        $this->category = $this->getRelatedDataset('category_ids');
-        return $this->category;
+        return $this->getCategories()[0];
     }
     public function getCategories()
     {
@@ -17,7 +16,7 @@ class qanda extends \rex_yform_manager_dataset
     {
         return strip_tags($this->getValue("answer"));
     }
-    
+
     public function getQuestion()
     {
         return $this->getValue("question");
