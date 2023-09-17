@@ -41,7 +41,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
                 $params['data_id'] = $a['list']->getValue('id');
                 $params['func'] = 'edit';
 
-                return '<a href="'.rex_url::backendPage('qanda/qanda', $params) .'">'. $a['value'].'</a>';
+                return '<a href="' . rex_url::backendPage('qanda/qanda', $params) . '">' . $a['value'] . '</a>';
             },
         );
     }
