@@ -23,10 +23,11 @@ class qanda extends \rex_yform_manager_dataset
         $ids = implode(",", $ids);
         return qanda::query()->whereRaw('status >= '.$status.' AND FIND_IN_SET(id, "'.$ids.'")')->find();
     }
+
     public static function findByCategoryIds(array $category_ids, float $status = 1)
     {
-        $ids = implode(",", $category_ids);
-        return qanda::query()->whereRaw('status >= '.$status.' AND FIND_IN_SET(category_ids, "'.$ids.'")')->find();
+        $ids = implode(',', $category_ids);
+        return self::query()->whereRAW('status >= ' . $status . ' AND FIND_IN_SET(category_ids, "' . $ids . '")')->find();
     }
     public function getAnswer($lang = null) :string
     {
@@ -60,10 +61,10 @@ class qanda extends \rex_yform_manager_dataset
         if (rex_addon::get("yrewrite") && rex_addon::get("yrewrite")->isAvailable()) {
             $host = rex_yrewrite::getFullUrlByArticleId(rex_article::getCurrentId(), rex_clang::getCurrentId());
         } else {
-            $host = rtrim(rex::getServer(), '/').rex_getUrl(rex_article::getCurrentId(), rex_clang::getCurrentId());
+            $host = rtrim(rex::getServer(), '/') . rex_getUrl(rex_article::getCurrentId(), rex_clang::getCurrentId());
         }
 
-        return rtrim($host, '/').'#'.$param. $this->getId();
+        return rtrim($host, '/') . '#' . $param . $this->getId();
     }
     public static function showJsonLd($question)
     {
