@@ -6,10 +6,17 @@ class qanda_category extends \rex_yform_manager_dataset
     {
         return $this->getValue('name');
     }
-
-    public function getAllQuestions()
+    
+    public static function findByIds($ids, $status = 1)
     {
-        return qanda::query()->where('status', 0, '>')->whereListContains('category_ids', $this->id)
-            ->find();
+        if(is_array($ids)) {
+            $ids = implode(",", $ids);
+        }
+        return qanda_category::query()->whereRaw('status >= '.$status.' AND FIND_IN_SET(id, "'.$ids.'")')->find();
+    }
+
+    public function find($status = 1)
+    {
+        return qanda::query()->where('status', $status, ">=")->whereListContains('category_ids', $this->id)->find();
     }
 }

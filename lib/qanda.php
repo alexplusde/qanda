@@ -22,6 +22,17 @@ class qanda extends \rex_yform_manager_dataset
         return $this->getValue('question');
     }
 
+    public static function findByIds(array $ids, float $status = 1)
+    {
+        $ids = implode(",", $ids);
+        return qanda::query()->whereRAW('FIND_IN_SET(id, "'.$ids.'")')->find();
+    }
+    public static function findByCategoryIds(array $category_ids, float $status = 1)
+    {
+        $ids = implode(",", $category_ids);
+        return qanda::query()->whereRAW('status >= '.$status.' AND FIND_IN_SET(category_ids, "'.$ids.'")')->find();
+    }
+
     public function getAnswer()
     {
         return $this->getValue('answer');
