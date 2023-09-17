@@ -1,5 +1,5 @@
 package: qanda
-version: '2.0.14'
+version: '2.1.0'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
@@ -26,14 +26,14 @@ pages:
         perm: qanda[]
         subpages: 
             qanda:
-                title: Fragen und Antworten
+                title: translate:qanda
                 icon: rex-icon fa-question-circle
                 subPath: pages/data_edit.php
                 itemattr:
                     table_name: rex_qanda
                 perm: qanda[qanda]
             category:
-                title: Kategorien
+                title: translate:qanda_category
                 icon: rex-icon fa-folder
                 subPath: pages/data_edit.php
                 itemattr:
