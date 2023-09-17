@@ -5,7 +5,12 @@ qanda_editor = CSS-Klassen (WYSIWYG-Editor)
 qanda_info_donate = Anders als die meisten Addons aus der REDAXO-Community ist die Entstehung und Weiterentwicklung dieses Addons nicht durch eigene Projekte gedeckt. Mit einer Spende oder einer Beauftragung sicherst du zusätzliche Features, die Stabilität, Funktionsumfang und Weiterentwicklung weiter verbessern können, sowie eine bessere Anleitung. 
 qanda_donate = Weiterentwicklung unterstützen 
 
-/* Tabelle "Fragen" */
+qanda_table = ❓ Fragen & Antworten
+qanda_category_table = ❓ Kategorien
+qanda_lang_table = ❓ Übersetzungen
+
+
+# Tabelle "Fragen"
 qanda_createdate = Erstellt am...
 qanda_createuser = Erstellt von...
 qanda_upadtedate = Zuletzt geändert am...
@@ -16,6 +21,13 @@ qanda_author = Autor
 qanda_category_ids = Kategorie(n)
 qanda_status = Veröffentlicht?
 qanda_prio = Reihenfolge
+
+qanda_category = Kategorie
+qanda_categories = Kategorien
+
+qanda_lang = Übersetzung
+qanda_lang_qanda_id = Frage
+qanda_lang_clang = Sprache
 
 qanda_category_name = Kategorie
 
