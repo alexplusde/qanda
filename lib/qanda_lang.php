@@ -1,21 +1,23 @@
 <?php
 
-
 class qanda_lang extends \rex_yform_manager_dataset
 {
-    public function getAnswerAsPlaintext() :string
+    public function getAnswerAsPlaintext(): string
     {
-        return strip_tags($this->getValue("answer"));
+        return strip_tags($this->getValue('answer'));
     }
+
     public function getQuestion()
     {
-        return $this->getValue("question");
+        return $this->getValue('question');
     }
+
     public function getAnswer()
     {
-        return $this->getValue("answer");
+        return $this->getValue('answer');
     }
-    public static function getTranslation($question, $lang) :qanda_lang
+
+    public static function getTranslation($question, $lang): self
     {
         return self::query()->where('qanda_id', $question)->where('clang_id', $lang)->findOne();
     }
