@@ -7,7 +7,7 @@ if ($table_name = $currentPage->getItemAttr('table_name', '')) {
         $_REQUEST['table_name'] = $table_name;
     }
 
-    if (true !== $currentPage->getItemAttr('show_title', false)) {
+    if (true !== $currentPage->getItemAttr('show_title')) {
         rex_extension::register('YFORM_MANAGER_DATA_PAGE_HEADER', static function ($ep) {
             if ($ep->getParam('yform')->table->getTableName() !== $ep->getParam('table_name')) {
                 return;

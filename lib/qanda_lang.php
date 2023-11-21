@@ -7,17 +7,17 @@ class qanda_lang extends \rex_yform_manager_dataset
         return strip_tags($this->getValue('answer'));
     }
 
-    public function getQuestion()
+    public function getQuestion() : string
     {
         return $this->getValue('question');
     }
 
-    public function getAnswer()
+    public function getAnswer() : string
     {
         return $this->getValue('answer');
     }
 
-    public static function getTranslation($question, $lang): self
+    public static function getTranslation(int $question, string $lang): ?qanda_lang
     {
         return self::query()->where('qanda_id', $question)->where('clang_id', $lang)->findOne();
     }
