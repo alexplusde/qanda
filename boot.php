@@ -8,6 +8,10 @@ rex_yform_manager_dataset::setModelClass(
     'rex_qanda_category',
     qanda_category::class,
 );
+rex_yform_manager_dataset::setModelClass(
+    'rex_qanda_lang',
+    qanda_lang::class,
+);
 
 if (rex::isBackend() && 'qanda/qanda' == rex_be_controller::getCurrentPage()) {
 
