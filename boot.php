@@ -34,7 +34,7 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
 
                 // Generierung des auszugebenden Werts unter Einbeziehung beliebiger anderer Spalten
                 // $a['value'] enthält den tatsächlichen Wert der Spalte
-                // $a['list']->getValue('xyz') gibt den Wert einer anderen Spalte ("xyz) zurück.
+                // $a['list']->getValue('xyz') gibt den Wert einer anderen Spalte ("xyz") zurück.
                 $_csrf_key = rex_yform_manager_table::get('rex_qanda')->getCSRFKey();
                 $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
