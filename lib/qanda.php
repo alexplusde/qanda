@@ -47,6 +47,7 @@ class qanda extends \rex_yform_manager_dataset
         }
         return $this->getValue('question');
     }
+
     /**
      * Findet Datensätze anhand ihrer IDs.
      * Finds records by their IDs.
@@ -80,6 +81,7 @@ class qanda extends \rex_yform_manager_dataset
         $ids = implode(',', $category_ids);
         return self::query()->whereRAW('status >= ' . $status . ' AND FIND_IN_SET(category_ids, "' . $ids . '")')->find();
     }
+
     /**
      * Gibt die Antwort in der angegebenen Sprache zurück, falls vorhanden, sonst in der Standardsprache.
      * Returns the answer in the specified language if available, otherwise in the default language.
@@ -133,6 +135,7 @@ class qanda extends \rex_yform_manager_dataset
         }
         return $this->getRelatedCollection('lang');
     }
+
     /**
      * Gibt den Autor zurück.
      * Returns the author.
@@ -167,6 +170,7 @@ class qanda extends \rex_yform_manager_dataset
 
         return rtrim($host, '/') . '#' . $param . $this->getId();
     }
+
     /**
      * Gibt die JSON-LD-Darstellung einer Frage zurück.
      * Returns the JSON-LD representation of a question.

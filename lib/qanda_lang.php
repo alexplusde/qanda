@@ -43,6 +43,7 @@ class qanda_lang extends \rex_yform_manager_dataset
     {
         return $this->getValue('answer');
     }
+
     /**
      * Setzt den Wert für die Antwort.
      * Sets the value for the answer.
@@ -72,6 +73,7 @@ class qanda_lang extends \rex_yform_manager_dataset
         $this->setValue('question', $question);
         return $this;
     }
+
     /**
      * Gibt die Übersetzung für eine bestimmte Frage und Sprache zurück.
      * Returns the translation for a specific question and language.

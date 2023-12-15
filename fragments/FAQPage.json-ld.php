@@ -9,8 +9,8 @@ function htmlEncode($value)
 function getAuthor($question)
 {
     return [
-      "@type" => "Person",
-      "name" => json_encode($question->getAuthor(), $GLOBALS['jsonOptions'])
+        '@type' => 'Person',
+        'name' => json_encode($question->getAuthor(), $GLOBALS['jsonOptions']),
     ];
 }
 ?>
