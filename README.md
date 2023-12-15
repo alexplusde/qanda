@@ -70,7 +70,7 @@ dump($question->getCategories()); // Kategorien zur Frage/Antwort mit der id=3
 dump($question->getUrl()); // URL zur aktuellen Seite mit Sprungmarke `question-header-{id}`
 ```
 
-Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
+Weitere Methoden unter <https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md>
 
 ### Die Klasse `qanda_category`
 
@@ -83,37 +83,195 @@ dump(qanda_category::get(3)); // Kategorie mit der id=3
 dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der Kategorie id=3
 ```
 
-Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
+Weitere Methoden unter <https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md>
 
-## Nutzung im Backend: Eingabe von Fragen und Antworten.
+## Nutzung im Backend: Eingabe von Fragen und Antworten
 
 ### Die Tabelle "FRAGEN"
 
-In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
+In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten.
 
-| Typ      | Typname             | Name              | Bezeichnung         |
-| -------- | ------------------- | ----------------- | ------------------- |
-| value    | text                | question          | Frage               |
-| validate | empty               | question          |                     |
-| value    | textarea            | answer            | Antwort             |
-| value    | be_manager_relation | qanda_category_id | Kategorie           |
-| value    | datestamp           | createdate        | Erstelldatum        |
-| value    | be_user             | updateuser        | Letzte Änderung von |
-| value    | be_user             | createuser        | Autor               |
-| value    | prio                | prio              | Reihenfolge         |
+GitHub Copilot: Hier sind die deutschen PHP-Docs in dieser Klasse mit Beispielen als Markdown:
 
-Die wichtigsten Validierungen wurden bereits eingefügt.
+#### `getCategory()`
+
+Gibt die erste Kategorie zurück.
+
+```php
+$firstCategory = $question->getCategory();
+```
+
+#### `getCategories()`
+
+Gibt alle Kategorien zurück.
+
+```php
+$categories = $question->getCategories();
+```
+
+#### `getQuestion(string|null $lang = null)`
+
+Gibt die Frage in der angegebenen Sprache zurück, falls vorhanden, sonst in der Standardsprache.
+
+```php
+$question = $question->getQuestion('de');
+```
+
+#### `findByIds(array $ids, float $status = 1)`
+
+Findet Datensätze anhand ihrer IDs.
+
+```php
+$records = qanda::findByIds([1, 2, 3], 1.0);
+```
+
+#### `findByCategoryIds(array $category_ids, float $status = 1)`
+
+Findet Datensätze anhand ihrer Kategorie-IDs.
+
+```php
+$records = qanda::findByCategoryIds([1, 2, 3], 1.0);
+```
+
+#### `getAnswer(string|null $lang = null)`
+
+Gibt die Antwort in der angegebenen Sprache zurück, falls vorhanden, sonst in der Standardsprache.
+
+```php
+$answer = $question->getAnswer('de');
+```
+
+GitHub Copilot: Hier sind die deutschen PHP-Docs in dieser Klasse mit Beispielen als Markdown:
+
+#### `getAnswerAsPlaintext(string|null $lang = null)`
+
+Gibt die Antwort als reinen Text (ohne HTML-Tags) in der angegebenen Sprache zurück, falls vorhanden, sonst in der Standardsprache.
+
+```php
+$plaintextAnswer = $question->getAnswerAsPlaintext('de');
+```
+
+#### `getTranslation(string|null $lang = null)`
+
+Gibt die Übersetzung in der angegebenen Sprache zurück, falls vorhanden, sonst die Sammlung aller Übersetzungen.
+
+```php
+$translation = $question->getTranslation('de');
+```
+
+#### `getAuthor()`
+
+Gibt den Autor zurück.
+
+```php
+$author = $question->getAuthor();
+```
+
+#### `getUrl(string $param = 'question-header-')`
+
+Gibt die URL zurück, optional mit einem spezifischen Parameter.
+
+```php
+$url = $question->getUrl('question-header-');
+```
+
+#### `showJsonLd(int|rex_yform_manager_dataset $question)`
+
+Gibt die JSON-LD-Darstellung einer Frage zurück.
+
+```php
+$jsonLd = MyClass::showJsonLd($question);
+```
+
+#### `showFAQPage(array|rex_yform_manager_collection $questions)`
+
+Gibt die JSON-LD-Darstellung einer FAQ-Seite zurück.
+
+```php
+$jsonLd = MyClass::showFAQPage($questions);
+```
 
 ### Die Tabelle "KATEGORIEN"
 
 Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
 
-| Typ      | Typname | Name   | Bezeichnung |
-| -------- | ------- | ------ | ----------- |
-| value    | text    | name   | Titel       |
-| validate | unique  | name   |             |
-| validate | empty   | name   |             |
-| value    | choice  | status | Status      |
+GitHub Copilot: Hier sind die deutschen PHP-Docs in dieser Klasse mit Beispielen als Markdown:
+
+#### `getName()`
+
+Gibt den Namen der Kategorie zurück.
+
+```php
+$name = $category->getName();
+```
+
+#### `findByIds(array|string $ids, int $status = 1)`
+
+Findet Kategorien anhand ihrer IDs.
+
+```php
+$categories = qanda_category::findByIds([1, 2, 3], 1);
+```
+
+#### `find(int $status = 1)`
+
+Findet Fragen, die zu dieser Kategorie gehören.
+
+```php
+$questions = $category->find(1);
+```
+
+### Die Tabelle "ÜBERSETZUNGEN"
+
+GitHub Copilot: Hier sind alle deutschen PHP-Docs in dieser Klasse mit Beispielen als Markdown:
+
+#### `getAnswerAsPlaintext()`
+
+Gibt die Antwort als reinen Text (ohne HTML-Tags) zurück.
+
+```php
+$plaintextAnswer = $qanda_lang->getAnswerAsPlaintext();
+```
+
+#### `getQuestion()`
+
+Gibt die Frage zurück.
+
+```php
+$question = $qanda_lang->getQuestion();
+```
+
+#### `getAnswer()`
+
+Gibt die Antwort zurück.
+
+```php
+$answer = $qanda_lang->getAnswer();
+```
+
+#### `setAnswer(string $answer)`
+
+Setzt den Wert für die Antwort.
+
+```php
+$qanda_lang->setAnswer('This is the answer.');
+```
+
+#### `setQuestion(string $question)`
+
+Setzt den Wert für die Frage.
+
+```php
+$qanda_lang->setQuestion('What is the question?');
+```
+
+#### `getTranslation(int $question, string $lang)`
+
+Gibt die Übersetzung für eine bestimmte Frage und Sprache zurück.
+
+```php
+$translation = qanda_lang::getTranslation(1, 'de');
+```
 
 ## Lizenz
 
@@ -122,8 +280,8 @@ MIT-Lizenz
 ## Autor
 
 **Alexander Walther**  
-http://www.alexplus.de  
-https://github.com/alexplusde  
+<http://www.alexplus.de>  
+<https://github.com/alexplusde>  
 
 **Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
