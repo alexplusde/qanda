@@ -94,15 +94,15 @@ Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs
 
 In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
-| Type     | Typname               | Name                | Bezeichnung         |
+| Typ      | Typname               | Name                | Bezeichnung         |
 | -------- | --------------------- | ------------------- | ------------------- |
 | value    | text                  | question            | Frage               |
 | validate | empty                 | question            |                     |
 | value    | textarea              | answer              | Antwort             |
-| value    | be_manager_relation | qanda_category_id | Category            |
+| value    | be_manager_relation | qanda_category_id | Kategorie           |
 | value    | datestamp             | createdate          | Erstelldatum        |
 | value    | be_user               | updateuser          | Letzte Änderung von |
-| value    | be_user               | createuser          | Author              |
+| value    | be_user               | createuser          | Autor               |
 | value    | prio                  | prio                | Reihenfolge         |
 
 Die wichtigsten Validierungen wurden bereits eingefügt.
@@ -111,18 +111,18 @@ Die wichtigsten Validierungen wurden bereits eingefügt.
 
 Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
 
-| Type     | Typname | Name   | Bezeichnung |
+| Typ      | Typname | Name   | Bezeichnung |
 | -------- | ------- | ------ | ----------- |
-| value    | text    | name   | Title       |
+| value    | text    | name   | Titel       |
 | validate | unique  | name   |             |
 | validate | empty   | name   |             |
 | value    | choice  | status | Status      |
 
-## License
+## Lizenz
 
 MIT-Lizenz
 
-## Author
+## Autor
 
 **Alexander Walther**  
 http://www.alexplus.de  
