@@ -5,7 +5,7 @@ Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingege
 ![GitHub Logo](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
 
 
-## Cechy
+## Funktioner
 
 * Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
 * Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
@@ -18,7 +18,7 @@ Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingege
 
 > **Steuere eigene Verbesserungen** dem [GitHub-Repository von qanda](https://github.com/alexplusde/qanda) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
-## Instalacja
+## Installation
 
 Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Fragen & Antworten`.
 
@@ -94,15 +94,15 @@ Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs
 
 In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
-| Typ      | Typname               | Nazwa               | Bezeichnung         |
+| Typ      | Typname               | Namn                | Bezeichnung         |
 | -------- | --------------------- | ------------------- | ------------------- |
 | value    | text                  | question            | Frage               |
 | validate | empty                 | question            |                     |
 | value    | textarea              | answer              | Antwort             |
-| value    | be_manager_relation | qanda_category_id | Kategoria           |
+| value    | be_manager_relation | qanda_category_id | Kategori            |
 | value    | datestamp             | createdate          | Erstelldatum        |
 | value    | be_user               | updateuser          | Letzte Änderung von |
-| value    | be_user               | createuser          | Autor               |
+| value    | be_user               | createuser          | Författare          |
 | value    | prio                  | prio                | Reihenfolge         |
 
 Die wichtigsten Validierungen wurden bereits eingefügt.
@@ -111,18 +111,18 @@ Die wichtigsten Validierungen wurden bereits eingefügt.
 
 Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
 
-| Typ      | Typname | Nazwa  | Bezeichnung |
+| Typ      | Typname | Namn   | Bezeichnung |
 | -------- | ------- | ------ | ----------- |
-| value    | text    | name   | Tytuł       |
+| value    | text    | name   | Titel       |
 | validate | unique  | name   |             |
 | validate | empty   | name   |             |
 | value    | choice  | status | Status      |
 
-## Licencja
+## Licens
 
 MIT-Lizenz
 
-## Autor
+## Författare
 
 **Alexander Walther**  
 http://www.alexplus.de  
@@ -131,6 +131,6 @@ https://github.com/alexplusde
 **Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
 
-## Kredyty
+## Krediter
 
 qanda basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  

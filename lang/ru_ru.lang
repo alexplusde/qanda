@@ -1,6 +1,6 @@
-канда = вопросы и ответы
-qanda_settings = настройки
-qanda_editor = классы CSS для редактора
+qanda = Fragen & Antworten
+qanda_settings = Einstellungen
+qanda_editor = CSS-Klassen für den Editor
 
-qanda_info_donate = В отличие от большинства аддонов от сообщества REDAXO, создание и дальнейшее развитие этого аддона не распространяется на собственные проекты. С помощью пожертвования или заказа вы получаете дополнительные функции, которые могут еще больше повысить стабильность, функциональность и дальнейшее развитие, а также более качественные инструкции. 
-qanda_donate = Поддержите дальнейшее развитие 
+qanda_info_donate = Anders als die meisten Addons aus der REDAXO-Community ist die Entstehung und Weiterentwicklung dieses Addons nicht durch eigene Projekte gedeckt. Mit einer Spende oder einer Beauftragung sicherst du zusätzliche Features, die Stabilität, Funktionsumfang und Weiterentwicklung weiter verbessern können, sowie eine bessere Anleitung. 
+qanda_donate = Weiterentwicklung unterstützen 

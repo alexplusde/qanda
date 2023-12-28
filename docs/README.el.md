@@ -1,136 +1,136 @@
-# FAQ / Ερωτήσεις και απαντήσεις για το REDAXO 5.x & YForm 4.x
+# FAQ / Fragen und Antworten für REDAXO 5.x & YForm 4.x
 
-Με αυτό το πρόσθετο, οι περιοχές συχνών ερωτήσεων καθώς και οι γενικές ερωτήσεις μπορούν να εισαχθούν και να διαχειριστούν & απαντήσεις. Δωρεάν για μη εμπορικά έργα (CC BY-NC-SA 4.0). Εάν έχετε οποιεσδήποτε ερωτήσεις σχετικά με την άδεια και τη χρήση, επικοινωνήστε με το qanda@alexplus.de.
+Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingegeben und verwaltet werden. Kostenlos für nicht-kommerzielle Projekte (CC BY-NC-SA 4.0). Bitte bei Fragen zur Lizenz und Nutzung qanda@alexplus.de anfragen.
 
-![Λογότυπο GitHub](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
+![GitHub Logo](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
 
 
-## χαρακτηριστικά
+## Χαρακτηριστικά
 
-* Πλήρως υλοποιημένο με **YForm** : Όλες οι δυνατότητες και οι επιλογές προσαρμογής του YForm είναι διαθέσιμες
-* Απλό: Η έξοδος είναι μέσω [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) ή αντικειμενοστραφής μέσω [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
-* Ευέλικτο: Φιλτράρετε ερωτήσεις και απαντήσεις ανά κατηγορία
-* Χρήσιμο: Μόνο επιλεγμένοι **ρόλοι**/συντάκτες έχουν πρόσβαση
-* Βελτιστοποιημένη μηχανή αναζήτησης: Έτοιμο για [JSON+LD μορφή](https://jsonld.com/question-and-answer/) και δομημένα δεδομένα με βάση το schema.org
-* Έτοιμοι για πολλά περισσότερα: Συμβατό με το πρόσθετο [URL2](https://github.com/tbaddade/redaxo_url)
+* Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
+* Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
+* Flexibel: Filtere Fragen und Antworten nach Kategorien
+* Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
+* Suchmaschinenoptimiert: Bereit für das [JSON+LD-Format](https://jsonld.com/question-and-answer/) und Strucured Data auf Basis von schema.org
+* Bereit für viel mehr: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
 
-> **Συμβουλή:** Το πρόσθετο λειτουργεί τέλεια μαζί με τα πρόσθετα [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
+> **Tipp:** Das Addon arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
 
-> **Συνεισφέρετε τις δικές σας βελτιώσεις** στο αποθετήριο [qanda](https://github.com/alexplusde/qanda) GitHub. Ή **υποστηρίζει αυτό το πρόσθετο:** Με μια παραγγελία [υποστηρίζετε την περαιτέρω ανάπτυξη αυτού του πρόσθετου](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von qanda](https://github.com/alexplusde/qanda) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
-## εγκατάσταση
+## Εγκατάσταση
 
-Κατεβάστε και εγκαταστήστε το πρόσθετο `qanda` στο πρόγραμμα εγκατάστασης REDAXO. Στη συνέχεια εμφανίζεται ένα νέο στοιχείο μενού `Ερωτήσεις & Απαντήσεις`.
+Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Fragen & Antworten`.
 
-## Χρήση στο μπροστινό μέρος
+## Nutzung im Frontend
 
-### παράδειγμα ενότητας
+### Beispiel-Modul
 
 ```php
-<h1>Συχνές ερωτήσεις σελίδα</h1>
+<h1>FAQ-Seite</h1>
 <?php
 
 echo qanda::showFAQPage(qanda::getAll()); // Json+ld
 
-foreach (qanda::getAll() ως $question) {
+foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
-    ηχώ '<div class="answer">'.$question->getAnswer().'</div></details>';
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
 }
 ?>
 ```
 
 ```php
-<h3>Οι πιο σημαντικές ερωτήσεις</h3>
+<h3>Die wichtigsten Fragen</h3>
 <?php
-foreach (qanda::getAll() ως $question) {
+foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
-    ηχώ '<div class="answer">'.$question->getAnswer().'</div></details>';
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
     echo qanda::showJsonLd($question);
 }
 ?>
 ```
 
-### Η κλάση `qanda`
+### Die Klasse `qanda`
 
-Πληκτρολογήστε `rex_yform_manager_dataset`. Πρόσβαση στον πίνακα `rex_qanda` με ερωτήσεις και απαντήσεις.
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda` mit Fragen und Antworten zu.
 
-#### εξόδου δείγματος
-
-```php
-$question = qanda::get(3); // ερώτηση με id=3
-
-// ερώτηση και απάντηση
-dump($question->getQuestion()); // Ερώτηση
-dump($question->getAuthor()); // συγγραφέας της ερώτησης
-dump($question->getAnswer()); // Απάντηση ως HTML (αν είχε καθοριστεί πρόγραμμα επεξεργασίας)
-dump($question->getAnswerAsPlaintext()); // Απάντηση ως κείμενο αντί για HTML
-
-// Κατηγορία
-dump($question->getCategory()); // Κατηγορία για ερώτηση/απάντηση με id=3
-dump($question->getCategories()); // Κατηγορίες για την ερώτηση/απάντηση με id=3
-
-// Άλλες μέθοδοι
-dump($question->getUrl()); // URL στην τρέχουσα σελίδα με την ετικέτα "question-{id}25".
-```
-
-Περισσότερες μέθοδοι στη διεύθυνση https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
-
-### Η κλάση `qanda_κατηγορία`
-
-Πληκτρολογήστε `rex_yform_manager_dataset`. Πρόσβαση στον πίνακα `rex_qanda_category`.
-
-#### Δείγμα εξόδου μιας κατηγορίας
+#### Beispiel-Ausgabe
 
 ```php
-dump(qanda_category::get(3)); // κατηγορία με id=3
-dump(qanda_category::get(3)->getAllQuestions()); // Όλα τα ζεύγη ερωτήσεων-απαντήσεων κατηγορίας id=3
+$question = qanda::get(3); // Frage mit der id=3
+
+// Frage und Antwort
+dump($question->getQuestion()); // Frage
+dump($question->getAuthor()); // Autor der Frage
+dump($question->getAnswer()); // Antwort als HTML (sofern ein Editor angegeben wurde)
+dump($question->getAnswerAsPlaintext()); // Antwort als Text, statt als HTML
+
+// Kategorie
+dump($question->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+dump($question->getCategories()); // Kategorien zur Frage/Antwort mit der id=3
+
+// Weitere Methoden
+dump($question->getUrl()); // URL zur aktuellen Seite mit Sprungmarke `question-header-{id}`
 ```
 
-Περισσότερες μέθοδοι στη διεύθυνση https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-## Χρήση στο backend: εισαγωγή ερωτήσεων και απαντήσεων.
+### Die Klasse `qanda_category`
 
-### Ο πίνακας ΕΡΩΤΗΣΕΙΣ
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda_category` zu.
 
-Οι μεμονωμένοι συνδυασμοί ερωτήσεων και απαντήσεων καταγράφονται στον πίνακα `rex_qanda`. Μετά την εγκατάσταση του `qanda` , είναι διαθέσιμα τα ακόλουθα πεδία:
+#### Beispiel-Ausgabe einer Kategorie
 
-| Τύπος     | πληκτρολογήστε όνομα  | Επώνυμο                | ονομασία               |
-| --------- | --------------------- | ---------------------- | ---------------------- |
-| αξία      | κείμενο               | ερώτηση                | ερώτηση                |
-| επικυρώνω | αδειάζω               | ερώτηση                |                        |
-| αξία      | textarea              | απάντηση               | απάντηση               |
-| αξία      | be_manager_relation | qanda_category_id    | κατηγορία              |
-| αξία      | σφραγίδα ημερομηνίας  | ημερομηνία δημιουργίας | ημερομηνία δημιουργίας |
-| αξία      | be_user               | χρήστη ενημέρωσης      | Τελευταία αλλαγή από   |
-| αξία      | be_user               | Δημιουργός χρήστη      | συγγραφέας             |
-| αξία      | προτεραιότητα         | προτεραιότητα          | Σειρά                  |
+```php
+dump(qanda_category::get(3)); // Kategorie mit der id=3
+dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der Kategorie id=3
+```
 
-Οι πιο σημαντικές επικυρώσεις έχουν ήδη εισαχθεί.
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-### Ο πίνακας ΚΑΤΗΓΟΡΙΕΣ
+## Nutzung im Backend: Eingabe von Fragen und Antworten.
 
-Ο πίνακας για τις κατηγορίες μπορεί να τροποποιηθεί ελεύθερα σε ομαδικές ερωτήσεις/απαντήσεις ή σε λέξεις-κλειδιά (ως ετικέτες).
+### Die Tabelle "FRAGEN"
 
-| Τύπος     | πληκτρολογήστε όνομα | Επώνυμο   | ονομασία  |
-| --------- | -------------------- | --------- | --------- |
-| αξία      | κείμενο              | Επώνυμο   | τίτλος    |
-| επικυρώνω | μοναδικός            | Επώνυμο   |           |
-| επικυρώνω | αδειάζω              | Επώνυμο   |           |
-| αξία      | επιλογή              | κατάσταση | κατάσταση |
+In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
-## άδεια
+| Τύπος    | Typname               | Όνομα               | Bezeichnung         |
+| -------- | --------------------- | ------------------- | ------------------- |
+| value    | text                  | question            | Frage               |
+| validate | empty                 | question            |                     |
+| value    | textarea              | answer              | Antwort             |
+| value    | be_manager_relation | qanda_category_id | Κατηγορία           |
+| value    | datestamp             | createdate          | Erstelldatum        |
+| value    | be_user               | updateuser          | Letzte Änderung von |
+| value    | be_user               | createuser          | Συγγραφέας          |
+| value    | prio                  | prio                | Reihenfolge         |
 
-Άδεια MIT
+Die wichtigsten Validierungen wurden bereits eingefügt.
 
-## συγγραφέας
+### Die Tabelle "KATEGORIEN"
+
+Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
+
+| Τύπος    | Typname | Όνομα  | Bezeichnung |
+| -------- | ------- | ------ | ----------- |
+| value    | text    | name   | Τίτλος      |
+| validate | unique  | name   |             |
+| validate | empty   | name   |             |
+| value    | choice  | status | Κατάσταση   |
+
+## Άδεια
+
+MIT-Lizenz
+
+## Συγγραφέας
 
 **Alexander Walther**  
 http://www.alexplus.de  
 https://github.com/alexplusde
 
-**Υπεύθυνος έργου**  
+**Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
 
-## πιστώσεις
+## Πιστώσεις
 
-Το qanda βασίζεται στο: [YForm](https://github.com/yakamara/redaxo_yform)  
+qanda basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  

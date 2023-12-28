@@ -1,136 +1,136 @@
-# SSS / REDAXO 5.x için Sorular ve Cevaplar & YForm 4.x
+# FAQ / Fragen und Antworten für REDAXO 5.x & YForm 4.x
 
-Bu eklenti ile SSS alanları ve genel soruların yanı sıra & cevap girilebilir ve yönetilebilir. Ticari olmayan projeler için ücretsiz (CC BY-NC-SA 4.0). Lisans ve kullanımla ilgili herhangi bir sorunuz varsa, lütfen qanda@alexplus.de ile iletişime geçin.
+Mit diesem Addon können FAQ-Bereiche sowie generelle Fragen & Antworten eingegeben und verwaltet werden. Kostenlos für nicht-kommerzielle Projekte (CC BY-NC-SA 4.0). Bitte bei Fragen zur Lizenz und Nutzung qanda@alexplus.de anfragen.
 
-![GitHub logosu](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
+![GitHub Logo](https://raw.githubusercontent.com/alexplusde/qanda/main/docs/screenshot.png)
 
 
-## özellikleri
+## Özellik
 
-* **YForm** ile tamamen uygulandı: YForm'un tüm özellikleri ve özelleştirme seçenekleri mevcut
-* Basit: Çıktı [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) üzerinden veya [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)üzerinden nesne yönelimli
-* Esnek: Soruları ve yanıtları kategoriye göre filtreleyin
-* Faydalı: Yalnızca seçilen **rol**/düzenleyiciler erişebilir
-* Arama motoru optimize edildi: [JSON+LD formatı](https://jsonld.com/question-and-answer/) için hazır ve schema.org'a dayalı yapılandırılmış veriler
-* Çok daha fazlası için hazır: [URL2 addon](https://github.com/tbaddade/redaxo_url)ile uyumlu
+* Vollständig mit **YForm** umgesetzt: Alle Features und Anpassungsmöglichkeiten von YForm verfügbar
+* Einfach: Die Ausgabe erfolgt über [`rex_sql`](https://redaxo.org/doku/master/datenbank-queries) oder objektorientiert über [YOrm](https://github.com/yakamara/redaxo_yform_docs/blob/master/de_de/yorm.md)
+* Flexibel: Filtere Fragen und Antworten nach Kategorien
+* Sinnvoll: Nur ausgewählte **Rollen**/Redakteure haben Zugriff
+* Suchmaschinenoptimiert: Bereit für das [JSON+LD-Format](https://jsonld.com/question-and-answer/) und Strucured Data auf Basis von schema.org
+* Bereit für viel mehr: Kompatibel zum [URL2-Addon](https://github.com/tbaddade/redaxo_url)
 
-> **İpucu:** Eklenti, eklentilerle birlikte harika çalışıyor [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
+> **Tipp:** Das Addon arbeitet hervorragend zusammen mit den Addons [`yform_usability`](https://github.com/FriendsOfREDAXO/yform_usability/)
 
-> **Kendi geliştirmelerinizi** [qanda](https://github.com/alexplusde/qanda) GitHub deposuna katkıda bulunun. Veya **bu eklentiyi destekler:** [siparişiyle bu eklentinin daha da geliştirilmesini desteklersiniz](https://github.com/sponsors/alexplusde)
+> **Steuere eigene Verbesserungen** dem [GitHub-Repository von qanda](https://github.com/alexplusde/qanda) bei. Oder **unterstütze dieses Addon:** Mit einer [Beauftragung unterstützt du die Weiterentwicklung dieses AddOns](https://github.com/sponsors/alexplusde)
 
-## Kurulum
+## Kurma
 
-`qanda` eklentisini REDAXO yükleyicisine indirin ve kurun. Ardından yeni bir menü öğesi `Soru & Cevap`belirir.
+Im REDAXO-Installer das Addon `qanda` herunterladen und installieren. Anschließend erscheint ein neuer Menüpunkt `Fragen & Antworten`.
 
-## Ön uçta kullanın
+## Nutzung im Frontend
 
-### örnek modül
+### Beispiel-Modul
 
 ```php
-<h1>SSS sayfası</h1>
+<h1>FAQ-Seite</h1>
 <?php
 
 echo qanda::showFAQPage(qanda::getAll()); // Json+ld
 
 foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
-    yankı '<div class="answer">'.$question->getAnswer().'</div></details>';
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
 }
 ?>
 ```
 
 ```php
-<h3>En önemli sorular</h3>
+<h3>Die wichtigsten Fragen</h3>
 <?php
 foreach (qanda::getAll() as $question) {
     echo '<details><summary>'.$question->getQuestion().'</summary>';
-    yankı '<div class="answer">'.$question->getAnswer().'</div></details>';
-    yankı qanda::showJsonLd($question);
+    echo '<div class="answer">'.$question->getAnswer().'</div></details>';
+    echo qanda::showJsonLd($question);
 }
 ?>
 ```
 
-### Sınıf `qanda`
+### Die Klasse `qanda`
 
-`rex_yform_manager_dataset`yazın. Sorular ve yanıtlarla birlikte `rex_qanda` tablosuna erişir.
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda` mit Fragen und Antworten zu.
 
-#### örnek çıktı
-
-```php
-$question = kanda::get(3); // id'li soru=3
-
-// soru cevap
-dump($question->getQuestion()); // Soru
-dökümü($question->getAuthor()); //
-sorunun yazarı dump($question->getAnswer()); // HTML olarak cevapla (eğer bir editör belirtilmişse)
-dump($question->getAnswerAsPlaintext()); // HTML
-
-yerine metin olarak yanıt ver // Kategori
-dump($question->getCategory()); // id=3 olan soru/cevap kategorisi
-dump($question->getCategories()); // id=3 olan soru/cevap kategorileri
-
-// Diğer yöntemler
-dump($question->getUrl()); // "soru-{id}" etiketli geçerli sayfanın URL'si
-```
-
-https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md adresinde daha fazla yöntem
-
-### `sınıfı qanda_category`
-
-`rex_yform_manager_dataset`yazın. Tablo `rex_qanda_category` erişir.
-
-#### Bir kategorinin örnek çıktısı
+#### Beispiel-Ausgabe
 
 ```php
-dump(qanda_category::get(3)); // id=3 olan kategori
-dump(qanda_category::get(3)->getAllQuestions()); // Kategori id=3'ün tüm soru-cevap çiftleri
+$question = qanda::get(3); // Frage mit der id=3
+
+// Frage und Antwort
+dump($question->getQuestion()); // Frage
+dump($question->getAuthor()); // Autor der Frage
+dump($question->getAnswer()); // Antwort als HTML (sofern ein Editor angegeben wurde)
+dump($question->getAnswerAsPlaintext()); // Antwort als Text, statt als HTML
+
+// Kategorie
+dump($question->getCategory()); // Kategorie zur Frage/Antwort mit der id=3
+dump($question->getCategories()); // Kategorien zur Frage/Antwort mit der id=3
+
+// Weitere Methoden
+dump($question->getUrl()); // URL zur aktuellen Seite mit Sprungmarke `question-header-{id}`
 ```
 
-https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md adresinde daha fazla yöntem
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-## Arka uçta kullanın: soru ve cevap girişi.
+### Die Klasse `qanda_category`
 
-### SORULAR tablosu
+Typ `rex_yform_manager_dataset`. Greift auf die Tabelle `rex_qanda_category` zu.
 
-Bireysel soru-cevap kombinasyonları tablo `rex_qanda` kaydedilir. `qanda` yükledikten sonra aşağıdaki alanlar kullanılabilir:
+#### Beispiel-Ausgabe einer Kategorie
 
-| Tip        | tür adı               | Soyadı                 | atama              |
-| ---------- | --------------------- | ---------------------- | ------------------ |
-| değer      | Metin                 | soru                   | soru               |
-| doğrulamak | boş                   | soru                   |                    |
-| değer      | metin alanı           | Cevap                  | Cevap              |
-| değer      | be_manager_relation | qanda_category_id    | kategori           |
-| değer      | tarih damgası         | oluşturulan tarih      | oluşturulma tarihi |
-| değer      | be_user               | güncelleme kullanıcısı | Son değişiklik:    |
-| değer      | be_user               | Kullanıcı oluştur      | yazar              |
-| değer      | öncelik               | öncelik                | Diziler            |
+```php
+dump(qanda_category::get(3)); // Kategorie mit der id=3
+dump(qanda_category::get(3)->getAllQuestions()); // Alle Frage-Antwort-Paare der Kategorie id=3
+```
 
-En önemli doğrulamalar zaten eklenmiştir.
+Weitere Methoden unter https://github.com/yakamara/redaxo_yform/blob/master/docs/04_yorm.md
 
-### KATEGORİLER tablosu
+## Nutzung im Backend: Eingabe von Fragen und Antworten.
 
-Kategoriler tablosu, soruları/cevapları veya anahtar kelimeleri (etiket olarak) gruplamak için serbestçe değiştirilebilir.
+### Die Tabelle "FRAGEN"
 
-| Tip        | tür adı   | Soyadı | atama  |
-| ---------- | --------- | ------ | ------ |
-| değer      | Metin     | Soyadı | Başlık |
-| doğrulamak | benzersiz | Soyadı |        |
-| doğrulamak | boş       | Soyadı |        |
-| değer      | seçim     | durum  | durum  |
+In der Tabelle `rex_qanda` werden einzelne Frage-Antwort-Kombinationen festgehalten. Nach der Installation von `qanda` stehen folgende Felder zur Verfügung:
 
-## lisans
+| Tür      | Typname               | Ad                  | Bezeichnung         |
+| -------- | --------------------- | ------------------- | ------------------- |
+| value    | text                  | question            | Frage               |
+| validate | empty                 | question            |                     |
+| value    | textarea              | answer              | Antwort             |
+| value    | be_manager_relation | qanda_category_id | Kategori            |
+| value    | datestamp             | createdate          | Erstelldatum        |
+| value    | be_user               | updateuser          | Letzte Änderung von |
+| value    | be_user               | createuser          | Yaratıcı            |
+| value    | prio                  | prio                | Reihenfolge         |
 
-MIT lisansı
+Die wichtigsten Validierungen wurden bereits eingefügt.
 
-## yazar
+### Die Tabelle "KATEGORIEN"
+
+Die Tabelle für Kategorien kann frei verändert werden, um Fragen / Antworten zu gruppieren oder zu Verschlagworten (als Tags).
+
+| Tür      | Typname | Ad     | Bezeichnung |
+| -------- | ------- | ------ | ----------- |
+| value    | text    | name   | Başlık      |
+| validate | unique  | name   |             |
+| validate | empty   | name   |             |
+| value    | choice  | status | Durum       |
+
+## Lisans
+
+MIT-Lizenz
+
+## Yaratıcı
 
 **Alexander Walther**  
 http://www.alexplus.de  
 https://github.com/alexplusde
 
-**Proje lideri**  
+**Projekt-Lead**  
 [Alexander Walther](https://github.com/alexplusde)
 
-## kredi
+## Kredi
 
-qanda şuna dayanmaktadır: [YForm](https://github.com/yakamara/redaxo_yform)  
+qanda basiert auf: [YForm](https://github.com/yakamara/redaxo_yform)  
