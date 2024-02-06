@@ -204,4 +204,23 @@ class qanda extends \rex_yform_manager_dataset
         $fragment->setVar('questions', $questions);
         return $fragment->parse('FAQPage.json-ld.php');
     }
+
+
+    /* Hilfsklasse für JSON-LD Fragmente */
+    public static function htmlEncode($value)
+    {
+        return htmlentities($value, ENT_QUOTES, 'UTF-8');
+    }
+
+    /* Hilfsklasse für JSON-LD Fragmente */
+    public static function getJsonAuthor($question)
+    {
+        return [
+            '@type' => 'Person',
+            'name' => json_encode($question->getAuthor(), $GLOBALS['jsonOptions']),
+        ];
+    }
+
+
+
 }
