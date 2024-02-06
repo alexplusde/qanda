@@ -14,7 +14,6 @@ rex_yform_manager_dataset::setModelClass(
 );
 
 if (rex::isBackend() && 'qanda/qanda' == rex_be_controller::getCurrentPage()) {
-
     rex_extension::register('OUTPUT_FILTER', static function (rex_extension_point $ep) {
         $suchmuster = 'class="###qanda-settings-editor###"';
         $ersetzen = rex_config::get('qanda', 'editor');
@@ -31,7 +30,6 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
             'custom', // festes Keyword
 
             static function ($a) {
-
                 // Generierung des auszugebenden Werts unter Einbeziehung beliebiger anderer Spalten
                 // $a['value'] enthält den tatsächlichen Wert der Spalte
                 // $a['list']->getValue('xyz') gibt den Wert einer anderen Spalte ("xyz") zurück.

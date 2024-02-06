@@ -1,6 +1,6 @@
 <?php
 
-class qanda_category extends \rex_yform_manager_dataset
+class qanda_category extends rex_yform_manager_dataset
 {
     /**
      * Gibt den Namen der Kategorie zurück.

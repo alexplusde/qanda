@@ -1,6 +1,6 @@
 <?php
 
-class qanda extends \rex_yform_manager_dataset
+class qanda extends rex_yform_manager_dataset
 {
     /**
      * Gibt die erste Kategorie zurück.
@@ -205,7 +205,6 @@ class qanda extends \rex_yform_manager_dataset
         return $fragment->parse('FAQPage.json-ld.php');
     }
 
-
     /* Hilfsklasse für JSON-LD Fragmente */
     public static function htmlEncode($value)
     {
@@ -220,7 +219,4 @@ class qanda extends \rex_yform_manager_dataset
             'name' => json_encode($question->getAuthor(), $GLOBALS['jsonOptions']),
         ];
     }
-
-
-
 }

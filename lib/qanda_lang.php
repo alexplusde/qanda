@@ -1,6 +1,6 @@
 <?php
 
-class qanda_lang extends \rex_yform_manager_dataset
+class qanda_lang extends rex_yform_manager_dataset
 {
     /**
      * Gibt die Antwort als reinen Text (ohne HTML-Tags) zurück.
