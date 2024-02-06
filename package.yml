@@ -1,5 +1,5 @@
 package: qanda
-version: '2.2.0'
+version: '2.2.1'
 author: 'Alexander Walther'
 supportpage: https://alexplusde.github.io/qanda/
 load: late
