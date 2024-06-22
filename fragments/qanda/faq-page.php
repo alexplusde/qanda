@@ -14,5 +14,5 @@ foreach (qanda::getAll() as $question) {
 	<?php
     echo $question->showJsonLd($question);
 }
-    ?>
+	?>
 </div>
