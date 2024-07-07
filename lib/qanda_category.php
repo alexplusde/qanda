@@ -50,7 +50,6 @@ class qanda_category extends rex_yform_manager_dataset
         return qanda::query()->where('status', $status, '>=')->whereListContains('category_ids', $this->getId())->find();
     }
 
-	
     /**
      * Findet alle Fragen, die zu dieser Kategorie gehören.
      * Finds all questions that belong to this category.
@@ -60,9 +59,9 @@ class qanda_category extends rex_yform_manager_dataset
      * Beispiel / Example:
      * $questions = $category->getAllQuestions();
      */
-	public function getAllQuestions()
+    public function getAllQuestions()
     {
-        return qanda::query()->where('status', 0, ">")->whereListContains('category_ids',$this->id)
+        return qanda::query()->where('status', 0, '>')->whereListContains('category_ids', $this->id)
             ->find();
     }
 }
