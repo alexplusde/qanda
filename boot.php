@@ -49,13 +49,13 @@ rex_extension::register('YFORM_DATA_LIST', static function ($ep) {
     }
 });
 
-if (rex::isBackend() && \rex_addon::get('qanda') && \rex_addon::get('qanda')->isAvailable() && !rex::isSafeMode()) {
+if (rex::isBackend() && rex_addon::get('qanda') && rex_addon::get('qanda')->isAvailable() && !rex::isSafeMode()) {
     $addon = rex_addon::get('qanda');
     $pages = $addon->getProperty('pages');
 
-    if(!rex::getConsole()) {
+    if (!rex::getConsole()) {
         $_csrf_key = rex_yform_manager_table::get('rex_qanda')->getCSRFKey();
-        
+
         $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
 
         $params = [];
