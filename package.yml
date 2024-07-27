@@ -25,7 +25,7 @@ pages:
         icon: rex-icon fa-question-circle
         perm: qanda[]
         subpages: 
-            qanda:
+            entry:
                 title: translate:qanda
                 icon: rex-icon fa-question-circle
                 subPath: pages/data_edit.php
