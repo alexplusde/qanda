@@ -42,13 +42,13 @@ pages:
             settings:
                 title: Einstellungen
                 icon: rex-icon fa-gear
-                itemclass: pull-right
+                itemClass: pull-right
                 perm: admin
             docs:
                 title: Hilfe
                 subPath: README.md
                 icon: rex-icon fa-info-circle
-                itemclass: pull-right
+                itemClass: pull-right
                 perm: qanda[docs]
 
 default_config:
