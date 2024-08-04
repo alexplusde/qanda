@@ -53,7 +53,7 @@ if (rex::isBackend() && rex_addon::get('qanda') && rex_addon::get('qanda')->isAv
     $addon = rex_addon::get('qanda');
     $pages = $addon->getProperty('pages');
 
-    if (!rex::getConsole()) {
+    if (rex::isBackend() && !empty($_REQUEST)) {
         $_csrf_key = rex_yform_manager_table::get('rex_qanda')->getCSRFKey();
 
         $token = rex_csrf_token::factory($_csrf_key)->getUrlParams();
