@@ -212,11 +212,11 @@ class qanda extends rex_yform_manager_dataset
     }
 
     /* Hilfsklasse für JSON-LD Fragmente */
-    public static function getJsonAuthor($question)
+    public static function getJsonAuthor($question, $jsonOptions = 0)
     {
         return [
             '@type' => 'Person',
-            'name' => json_encode($question->getAuthor(), $GLOBALS['jsonOptions']),
+            'name' => json_encode($question->getAuthor(), $jsonOptions),
         ];
     }
 }

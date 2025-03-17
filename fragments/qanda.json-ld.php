@@ -11,7 +11,7 @@ $jsonOptions = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CH
 		"text": <?= json_encode($this->question->getQuestion(), $jsonOptions) ?> ,
 		"answerCount": 1,
 		"dateCreated": "<?= qanda::htmlEncode($this->question->getValue('createdate')) ?>",
-		"author": <?= json_encode(qanda::getJsonAuthor($this->question), $jsonOptions) ?> ,
+		"author": <?= json_encode(qanda::getJsonAuthor($this->question, $jsonOptions)) ?> ,
 		"acceptedAnswer": {
 			"@type": "Answer",
 			"text": <?= json_encode($this->question->getValue('answer'), $jsonOptions) ?> ,
